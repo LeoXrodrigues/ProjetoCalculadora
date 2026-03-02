@@ -1,9 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-export default function ButtonLarge({ label, onPress }) {
+export default function ButtonLarge({ label, onPress, color = "#FFF" }) {
   return (
     <TouchableOpacity
-      style={styles.button}
+      style={[styles.button, { backgroundColor: color }]}
       onPress={onPress}
       activeOpacity={0.7}
     >
@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     margin: 5,
-    marginTop: 10,
+    marginTop: 5,
+    elevation: 6,
   },
   text: {
     fontWeight: "bold",

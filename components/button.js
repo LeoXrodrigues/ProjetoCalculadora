@@ -1,8 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-export default function Button({ label, size = 1, onPress }) {
+export default function Button({ label, onPress, color = "#FFF" }) {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.button, { backgroundColor: color }]}
+      onPress={onPress}
+      activeOpacity={0.7}
+    >
       <Text style={styles.textButton}>{label}</Text>
     </TouchableOpacity>
   );
@@ -13,11 +17,11 @@ const styles = StyleSheet.create({
     width: 83,
     height: 83,
     borderRadius: 20,
-    backgroundColor: "#FFF",
     justifyContent: "center",
     alignItems: "center",
     margin: 5,
-    marginTop: 10,
+    marginTop: 5,
+    elevation: 6,
   },
   textButton: {
     fontWeight: "bold",

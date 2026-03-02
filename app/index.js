@@ -1,64 +1,94 @@
+import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Text, View } from "react-native";
 import ButtonLarge from "../components/buttonLarge";
 import Button from "./../components/button";
+
+const rowColors = [
+  "#E6C79C",
+  "#EED6B5",
+  "#F3E2C9",
+  "#F7EBDD",
+  "#FBF3E9",
+  "#fcf6f0",
+];
 
 export default function RootLayout() {
   return (
     <View style={styles.container}>
       <View style={styles.display}>
-        <Text> teste</Text>
+        <Text style={styles.displayResult}>Display Resultado</Text>
+        <Text style={styles.displayExpression}>Display expreçao</Text>
       </View>
-      <View style={styles.tecladoNumerico}>
+      <LinearGradient
+        colors={["#f0dec0", "#a3ffd4"]}
+        style={styles.keyboardNumber}
+      >
         <View style={styles.colunas}>
-          <ButtonLarge label="<-" />
-          <ButtonLarge label="AC" />
+          <ButtonLarge label="<-" color={rowColors[0]} />
+          <ButtonLarge label="AC" color={rowColors[0]} />
         </View>
         <View style={styles.colunas}>
-          <Button label="√" />
-          <Button label="%" />
-          <Button label="/" />
-          <Button label="X" />
+          <Button label="√" color={rowColors[1]} />
+          <Button label="%" color={rowColors[1]} />
+          <Button label="/" color={rowColors[1]} />
+          <Button label="X" color={rowColors[1]} />
         </View>
         <View style={styles.colunas}>
-          <Button label="1" />
-          <Button label="2" />
-          <Button label="3" />
-          <Button label="+" />
+          <Button label="1" color={rowColors[2]} />
+          <Button label="2" color={rowColors[2]} />
+          <Button label="3" color={rowColors[2]} />
+          <Button label="+" color={rowColors[2]} />
         </View>
         <View style={styles.colunas}>
-          <Button label="4" />
-          <Button label="5" />
-          <Button label="6" />
-          <Button label="-" />
+          <Button label="4" color={rowColors[3]} />
+          <Button label="5" color={rowColors[3]} />
+          <Button label="6" color={rowColors[3]} />
+          <Button label="-" color={rowColors[3]} />
         </View>
         <View style={styles.colunas}>
-          <Button label="7" />
-          <Button label="8" />
-          <Button label="9" />
-          <Button label="," />
+          <Button label="7" color={rowColors[4]} />
+          <Button label="8" color={rowColors[4]} />
+          <Button label="9" color={rowColors[4]} />
+          <Button label="," color={rowColors[4]} />
         </View>
         <View style={styles.colunas}>
-          <ButtonLarge label="0" />
-          <ButtonLarge label="=" />
+          <ButtonLarge label="0" color={rowColors[5]} />
+          <ButtonLarge label="=" color={rowColors[5]} />
         </View>
-      </View>
+      </LinearGradient>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 4,
-    backgroundColor: "#FFFAF0",
+    flex: 10,
+    backgroundColor: "#f0dec0",
   },
   display: {
-    flex: 1,
+    flex: 2.2,
+    width: "100%",
+    paddingHorizontal: 20,
+    paddingVertical: 24,
+    alignItems: "flex-end",
+    justifyContent: "center",
   },
-  tecladoNumerico: {
-    flex: 3,
-    backgroundColor: "#C4FEE3",
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
+  displayExpression: {
+    fontSize: 20,
+    color: "rgba(0,0,0,0.45)",
+    marginTop: 50,
+  },
+  displayResult: {
+    fontSize: 40,
+    fontWeight: "700",
+    color: "#1C1C1C",
+  },
+  keyboardNumber: {
+    flex: 7.8,
+    width: "100%",
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    justifyContent: "center",
   },
   colunas: {
     flexDirection: "row",
