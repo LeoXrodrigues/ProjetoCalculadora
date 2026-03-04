@@ -1,7 +1,9 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import Button from "../components/button";
 import ButtonLarge from "../components/buttonLarge";
-import Button from "./../components/button";
+import Display from "../components/display";
+import useCalculator from "../hooks/useCalculator";
 
 const rowColors = [
   "#E6C79C",
@@ -13,47 +15,48 @@ const rowColors = [
 ];
 
 export default function RootLayout() {
+  const { expression, result, handlePress, calculateResult, clear } = useCalculator();
+
   return (
     <View style={styles.container}>
       <View style={styles.display}>
-        <Text style={styles.displayResult}>Display Resultado</Text>
-        <Text style={styles.displayExpression}>Display expreçao</Text>
+        <Display result={result} expression={expression} />
       </View>
       <LinearGradient
         colors={["#f0dec0", "#a3ffd4"]}
         style={styles.keyboardNumber}
       >
         <View style={styles.colunas}>
-          <ButtonLarge label="<-" color={rowColors[0]} />
-          <ButtonLarge label="AC" color={rowColors[0]} />
+          <ButtonLarge label="AC" onPress={clear} color={rowColors[0]} />
+          <ButtonLarge label="<-" onPress={() => {}} color={rowColors[0]} />
         </View>
         <View style={styles.colunas}>
-          <Button label="√" color={rowColors[1]} />
-          <Button label="%" color={rowColors[1]} />
-          <Button label="/" color={rowColors[1]} />
-          <Button label="X" color={rowColors[1]} />
+          <Button label="√" onPress={() => handlePress("√")} color={rowColors[1]} />
+          <Button label="%" onPress={() => handlePress("%")} color={rowColors[1]} />
+          <Button label="/" onPress={() => handlePress("/")} color={rowColors[1]} />
+          <Button label="X" onPress={() => handlePress("*")} color={rowColors[1]} />
         </View>
         <View style={styles.colunas}>
-          <Button label="1" color={rowColors[2]} />
-          <Button label="2" color={rowColors[2]} />
-          <Button label="3" color={rowColors[2]} />
-          <Button label="+" color={rowColors[2]} />
+          <Button label="1" onPress={() => handlePress("1")} color={rowColors[2]} />
+          <Button label="2" onPress={() => handlePress("2")} color={rowColors[2]} />
+          <Button label="3" onPress={() => handlePress("3")} color={rowColors[2]} />
+          <Button label="+" onPress={() => handlePress("+")} color={rowColors[2]} />
         </View>
         <View style={styles.colunas}>
-          <Button label="4" color={rowColors[3]} />
-          <Button label="5" color={rowColors[3]} />
-          <Button label="6" color={rowColors[3]} />
-          <Button label="-" color={rowColors[3]} />
+          <Button label="4" onPress={() => handlePress("4")} color={rowColors[3]} />
+          <Button label="5" onPress={() => handlePress("5")} color={rowColors[3]} />
+          <Button label="6" onPress={() => handlePress("6")} color={rowColors[3]} />
+          <Button label="-" onPress={() => handlePress("-")} color={rowColors[3]} />
         </View>
         <View style={styles.colunas}>
-          <Button label="7" color={rowColors[4]} />
-          <Button label="8" color={rowColors[4]} />
-          <Button label="9" color={rowColors[4]} />
-          <Button label="," color={rowColors[4]} />
+          <Button label="7" onPress={() => handlePress("7")} color={rowColors[4]} />
+          <Button label="8" onPress={() => handlePress("8")} color={rowColors[4]} />
+          <Button label="9" onPress={() => handlePress("9")} color={rowColors[4]} />
+          <Button label="," onPress={() => handlePress(",")} color={rowColors[4]} />
         </View>
         <View style={styles.colunas}>
-          <ButtonLarge label="0" color={rowColors[5]} />
-          <ButtonLarge label="=" color={rowColors[5]} />
+          <ButtonLarge label="0" onPress={() => handlePress("0")} color={rowColors[5]} />
+          <ButtonLarge label="=" onPress={calculateResult} color={rowColors[5]} />
         </View>
       </LinearGradient>
     </View>
@@ -62,7 +65,7 @@ export default function RootLayout() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 10,
+    flex: 1,
     backgroundColor: "#f0dec0",
   },
   display: {
@@ -73,21 +76,9 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     justifyContent: "center",
   },
-  displayExpression: {
-    fontSize: 20,
-    color: "rgba(0,0,0,0.45)",
-    marginTop: 50,
-  },
-  displayResult: {
-    fontSize: 40,
-    fontWeight: "700",
-    color: "#1C1C1C",
-  },
   keyboardNumber: {
     flex: 7.8,
     width: "100%",
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
     justifyContent: "center",
   },
   colunas: {
