@@ -1,16 +1,22 @@
 import { useState } from "react";
 
 export default function useCalculator() {
-  const [expression, setExpression] = useState("");  
-  const [result, setResult] = useState("");  
+  const [expression, setExpression] = useState("");
+  const [result, setResult] = useState("");
 
   const handlePress = (value) => {
-    setExpression((prev) => prev + value);
+    const operators = ["+", "-", "*", "/", "%"];
+
+    if (operators.includes(value)) {
+      setExpression((prev) => prev + " " + value + " ");
+    } else {
+      setExpression((prev) => prev + value);
+    }
   };
 
   const calculateResult = () => {
     try {
-      const evalResult = eval(expression);  
+      const evalResult = eval(expression);
       setResult(evalResult);
     } catch (e) {
       setResult("Erro");
